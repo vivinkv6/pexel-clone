@@ -1,0 +1,107 @@
+/* ____________Navbar Section ____________ */
+
+.nav {
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-title {
+  font-weight: 400;
+}
+
+.sub-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.text {
+  font-size: 10px;
+}
+
+.text:hover {
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+.avatar {
+  background-color: rgb(35, 132, 189);
+  height: 20px;
+  width: 10px;
+  padding: 10px;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 8px;
+}
+
+.socialmedia-icons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  border-top: 0.2px solid rgb(223, 221, 221);
+  padding-top: 10px;
+  color: rgb(139, 139, 139);
+}
+
+.menu {
+  display: none;
+  font-size: 20px;
+}
+
+.dropdown-item {
+  font-size: 10px;
+}
+
+.dropdown-menu > li:hover {
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+.nav-container {
+  background-color: black;
+}
+
+.nav-item {
+  color: white;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 10px;
+}
+
+.nav-item:hover {
+  opacity: 0.8;
+}
+
+/* __________________Responsive Layout_______________ */
+
+@media (max-width: 500px) {
+  .logo-title {
+    display: none;
+  }
+
+  .sub-container {
+    display: none;
+  }
+  .menu {
+    display: flex;
+  }
+
+  .menu:hover {
+    cursor: pointer;
+  }
+}
+
+
