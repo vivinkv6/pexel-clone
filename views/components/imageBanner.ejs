@@ -1,9 +1,13 @@
 <div class="banner-container">
+ 
+    
   <img
-    src="https://images.pexels.com/photos/18760211/pexels-photo-18760211.jpeg"
+    src=<%= img %>
     class="banner-img"
     alt="banner"
   />
+
+ 
   <div class="banner-content">
     <p><%= title%></p>
     <div class="input-group mb-3">
@@ -12,7 +16,8 @@
       </span>
       <input
         type="text"
-        class="form-control"
+        class="form-control  bi bi-search"
+        placeholder="Search for free photos"
         aria-label="Amount (to the nearest dollar)"
       />
       <span class="input-group-text bi bi-search"></span>

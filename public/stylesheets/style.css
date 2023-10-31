@@ -97,7 +97,7 @@
 .banner-img {
   filter: brightness(0.6);
   object-fit: cover;
-  height: 300px;
+  height: 350px;
   width: 100%;
 }
 
@@ -106,11 +106,11 @@
 }
 
 .banner-content {
-  width: 400px;
+  width: 500px;
   position: absolute;
   top: 30%;
   left: 20%;
-  font-size: 20px;
+  font-size: 28px;
   font-weight: 500;
 }
 
@@ -139,7 +139,75 @@
   font-size: 10px;
 }
 
+
+/* ____________________Sub-nav Section_______________ */
+
+.sub-nav{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  list-style-type: none;
+  margin-top: 20px;
+  font-weight: 600;
+}
+
+
+.sub-nav>li>a{
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.723);
+}
+
+.sub-nav>li>a:hover{
+  
+  background-color: black;
+  color: white;
+  border-radius: 20px;
+  width: auto;
+  padding: 10px;
+
+}
+
+
+
+
+
 /* __________________Responsive Layout_______________ */
+
+@media (max-width: 720px) {
+  .logo-title {
+    display: none;
+  }
+
+  .sub-container {
+    display: none;
+  }
+  .menu {
+    display: flex;
+  }
+
+  .menu:hover {
+    cursor: pointer;
+  }
+
+  .banner-content {
+    width: 300px;
+    position: absolute;
+    top: 20%;
+    left: 30%;
+    font-size: 25px;
+    text-wrap: wrap;
+  }
+
+  .banner-dropdown {
+    width: 100px;
+  }
+  .dots {
+    display: none;
+  }
+
+  
+}
 
 @media (max-width: 500px) {
   .logo-title {
@@ -160,7 +228,7 @@
   .banner-content {
     width: 150px;
     position: absolute;
-    top: 30%;
+    top: 20%;
     left: 30%;
     font-size: 15px;
     text-wrap: wrap;
@@ -172,13 +240,9 @@
   .dots {
     display: none;
   }
-
-  .editor-details {
-    display: none;
-  }
 }
 
-@media (max-width: 200px) {
+@media (max-width: 220px) {
   .banner-content {
     width: 150px;
     position: absolute;
@@ -189,10 +253,6 @@
   }
 
   .dots {
-    display: none;
-  }
-
-  .editor-details {
     display: none;
   }
 }
