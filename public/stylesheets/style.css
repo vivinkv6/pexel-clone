@@ -169,6 +169,22 @@
 }
 
 
+/* ___________________Image Gallery Section_________________ */
+
+.gallery-container{
+  height: 100px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.gallery-img:hover{
+filter: brightness(0.7);
+transition: 1s filter ease-in-out;
+}
+
+
 
 
 

@@ -1,0 +1,116 @@
+<% let page=1; %>
+<div class="gallery-container">
+  <div>
+    <h3 class="p-2" style="color: rgb(122, 122, 122)">Free Stock Photos</h3>
+  </div>
+  <div class="dropdown">
+    <select
+      class="btn btn-light border border-secondary dropdown-toggle me-2"
+      type="button"
+      data-bs-toggle="dropdown"
+      aria-expanded="false"
+    >
+      <option selected style="font-weight: 600" value="original">
+        <a class="dropdown-item" href="#">Original</a>
+      </option>
+      <option style="font-weight: 600" value="arge2x">
+        <a class="dropdown-item" href="#">Large2x</a>
+      </option>
+      <option style="font-weight: 600" value="large">
+        <a class="dropdown-item" href="#">Large</a>
+      </option>
+      <option style="font-weight: 600" value="medium">
+        <a class="dropdown-item" href="#">Medium</a>
+      </option>
+      <option style="font-weight: 600" value="small">
+        <a class="dropdown-item" href="#">Small</a>
+      </option>
+      <option style="font-weight: 600" value="portrait">
+        <a class="dropdown-item" href="#">Portrait</a>
+      </option>
+      <option style="font-weight: 600" value="landscape">
+        <a class="dropdown-item" href="#">Landscape</a>
+      </option>
+      <option style="font-weight: 600" value="tiny">
+        <a class="dropdown-item" href="#">Tiny</a>
+      </option>
+    </select>
+  </div>
+</div>
+<% if ( result?.length == 0) { %>
+<h1>No Data</h1>
+<% } else { %>
+<div class="container">
+  <div class="row">
+    <% for( let i = 0; i < result?.length; i++ ) { %>
+    <div class="col-md-4 mb-3">
+      <div class="card position-relative">
+        <a href="<%= result[i].url %>">
+          <img
+            loading="lazy"
+            src="<%= result[i].src.large %>"
+            class="card-img-top rounded gallery-img"
+            alt="..."
+            height=400
+            
+          />
+        </a>
+
+        <a
+          href="<%= result[i].photographer_url %>"
+          class="text-decoration-none text-light"
+          style="position: absolute; bottom: 20px; left: 10px; font-weight: 800"
+          ><%- result[i].photographer %></a
+        >
+
+        <a
+          style="
+            font-size: 20px;
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            font-weight: 800;
+          "
+          href="<%=result[i].src.original%>"
+          download
+          class="text-decoration-none text-light"
+        >
+          <i class="bi bi-download bg bg-light text-secondary p-2 rounded"></i>
+        </a>
+
+        <% if(result[i].liked){ %> 
+         <i
+         style="
+           font-size: 20px;
+           position: absolute;
+           top: 20px;
+           right: 20px;
+           font-weight: 800;
+         "
+         class="bi bi-heart-fill bg bg-light text-danger p-2 rounded"
+       ></i>
+      <%}else{%>
+         <i
+         style="
+           font-size: 20px;
+           position: absolute;
+           top: 20px;
+           right: 20px;
+           font-weight: 800;
+         "
+         class="bi bi-heart bg bg-light text-secondary p-2 rounded"
+       ></i>
+       <%} %>
+
+      
+      </div>
+    </div>
+   
+    <% } %>
+    <form action="/page" method="get">
+    <button class="btn btn-primary">Next</button>
+  </form>
+  </div>
+</div>
+
+<% } %>
