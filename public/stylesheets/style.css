@@ -180,7 +180,7 @@
 }
 
 .gallery-img:hover{
-filter: brightness(0.7);
+filter: brightness(0.8);
 transition: 1s filter ease-in-out;
 }
 
