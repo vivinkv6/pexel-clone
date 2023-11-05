@@ -10,18 +10,22 @@
  
   <div class="banner-content">
     <p><%= title%></p>
+    <form action="search" method="get">
     <div class="input-group mb-3">
-      <span class="input-group-text bi bi-card-image dropdown">
 
-      </span>
-      <input
+        <span class="input-group-text bi bi-card-image dropdown">
+          
+        </span>
+        <input
+        name="search"
         type="text"
         class="form-control  bi bi-search"
         placeholder="Search for free photos"
         aria-label="Amount (to the nearest dollar)"
-      />
-      <span class="input-group-text bi bi-search"></span>
-    </div>
+        />
+        <span class="input-group-text bi bi-search"></span>
+      </div>
+    </form>
 
     <p style="font-size: 10px;">
       <span style="font-size: 10px; color: rgb(188, 188, 188)">Trending:</span>

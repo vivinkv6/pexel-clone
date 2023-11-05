@@ -1,27 +1,30 @@
 var express = require("express");
 var router = express.Router();
 require("dotenv").config();
-const axios=require('axios');
-const extractQueryParams=require('../utils/extractQuery');
+const axios = require("axios");
+const extractQueryParams = require("../utils/extractQuery");
+const apiFetch=require('../utils/apiFtech');
+const {randomImages,randomVideos}=require('../utils/randomResources');
+
+
+
+
 
 
 
 /* GET home page. */
 router.get("/", async function (req, res, next) {
   try {
-    const response = await axios.get('https://api.pexels.com/v1/popular?page=1&per_page=60',{
-      headers:{
-        'Authorization':`${process.env.API_KEY}`
-      }
-    });
-    
-    const {page}=extractQueryParams(response.data.next_page)
-    console.log(page);
+    const response = await apiFetch("https://api.pexels.com/v1/popular?page=1&per_page=60");
+     console.log(response);
+
+    const { page } = extractQueryParams(response.data.next_page);
+
     res.render("index", {
       title: "Free Stock Photos Royalty free images shared by creators",
-      img: "https://images.pexels.com/photos/18760211/pexels-photo-18760211.jpeg",
+      img: randomImages(),
       result: response.data.photos,
-      pages:page,
+      pages: page,
     });
   } catch (error) {
     console.error(error);
@@ -34,37 +37,58 @@ router.get("/", async function (req, res, next) {
 router.get("/videos", function (req, res) {
   res.render("pages/videos", {
     title: "Free Stock Videos Royalty free videos shared by creators",
-    video:
-      "https://player.vimeo.com/progressive_redirect/playback/850743621/rendition/360p/file.mp4?loc=external&oauth2_token_id=57447761&signature=3bd92faae4d3e3d58d081c4dee9bb31cd0e64fc1d4c9fb5f1deebee26961762c",
+    video:randomVideos(),
   });
 });
 
-// dynamic pages of photos
 
-router.get("/:pages", async function (req, res, next) {
+
+// search particular image
+
+router.get("/search", async (req, res, next) => {
   try {
-    const {pages}=req.params;
-    const response = await axios.get(`https://api.pexels.com/v1/popular?page=${pages}&per_page=60`,{
-      headers:{
-        'Authorization':`${process.env.API_KEY}`
+    const { search } = req.query;
+    const response = await axios.get(
+      `https://api.pexels.com/v1/search?query=${search}&per_page=60`,
+      {
+        headers: {
+          Authorization: `${process.env.API_KEY}`,
+        },
       }
-    });
-    
-    const {page}=extractQueryParams(response.data.next_page)
-    console.log(page);
-    res.render("pages/pages", {
+    );
+
+    res.render("pages/search", {
       title: "Free Stock Photos Royalty free images shared by creators",
-      img: "https://images.pexels.com/photos/18760211/pexels-photo-18760211.jpeg",
+      img: randomImages(),
       result: response.data.photos,
-      pages:page,
+      query: search,
     });
+    console.log(response.data.photos);
   } catch (error) {
     console.error(error);
     next(error);
   }
 });
 
+// dynamic pages of photos
 
+router.get("/:pages", async function (req, res, next) {
+  try {
+    const { pages } = req.params;
+    const response = await apiFetch(`https://api.pexels.com/v1/popular?page=${pages}&per_page=60`);
 
+    const { page } = extractQueryParams(response.data.next_page);
+    console.log(page);
+    res.render("pages/pages", {
+      title: "Free Stock Photos Royalty free images shared by creators",
+      img: randomImages(),
+      result: response.data.photos,
+      pages: page,
+    });
+  } catch (error) {
+    console.error(error);
+    next(error);
+  }
+});
 
 module.exports = router;
