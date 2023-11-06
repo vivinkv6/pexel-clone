@@ -1,12 +1,6 @@
 <div class="banner-container">
  
-    
-    <!-- <img
-      src=<%= video %>
-      class="banner-img"
-      alt="banner"
-    /> -->
-    <!-- <video src=<%= video %> ></video> -->
+
     <video  class="banner-img" autoplay muted loop style="width: 100%;">
         <source src=<%=video %>>
     </video>
@@ -14,18 +8,22 @@
    
     <div class="banner-content">
       <p><%= title%></p>
+      <form action="/videos/search" method="get">
       <div class="input-group mb-3">
         <span class="input-group-text bi bi-file-play-fill dropdown">
   
         </span>
+        
         <input
           type="text"
+          name="search"
           class="form-control  bi bi-search"
           placeholder="Search for free videos"
           aria-label="Amount (to the nearest dollar)"
         />
-        <span class="input-group-text bi bi-search"></span>
+  
       </div>
+    </form>
   
       <p style="font-size: 10px;">
         <span style="font-size: 10px; color: rgb(188, 188, 188)">Trending:</span>
@@ -35,7 +33,7 @@
         ></i>
       </p>
     </div>
-    <p class="editor-details"><span style="font-weight: 700; font-size: 10px; color: rgba(188, 188, 188, 0.51)">Photo by</span> Kammeran Gonzalez</p>
+    <p class="editor-details"><span style="font-weight: 700; font-size: 10px; color: rgba(188, 188, 188, 0.51)">Video by</span> Kammeran Gonzalez</p>
   </div>
   
   

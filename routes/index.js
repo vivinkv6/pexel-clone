@@ -1,10 +1,9 @@
 var express = require("express");
 var router = express.Router();
 require("dotenv").config();
-const axios = require("axios");
 const extractQueryParams = require("../utils/extractQuery");
 const apiFetch=require('../utils/apiFtech');
-const {randomImages,randomVideos}=require('../utils/randomResources');
+const {randomImages}=require('../utils/randomResources');
 
 
 
@@ -16,7 +15,6 @@ const {randomImages,randomVideos}=require('../utils/randomResources');
 router.get("/", async function (req, res, next) {
   try {
     const response = await apiFetch("https://api.pexels.com/v1/popular?page=1&per_page=60");
-     console.log(response);
 
     const { page } = extractQueryParams(response.data.next_page);
 
@@ -32,30 +30,12 @@ router.get("/", async function (req, res, next) {
   }
 });
 
-// GET video section
-
-router.get("/videos", function (req, res) {
-  res.render("pages/videos", {
-    title: "Free Stock Videos Royalty free videos shared by creators",
-    video:randomVideos(),
-  });
-});
-
-
-
 // search particular image
 
 router.get("/search", async (req, res, next) => {
   try {
     const { search } = req.query;
-    const response = await axios.get(
-      `https://api.pexels.com/v1/search?query=${search}&per_page=60`,
-      {
-        headers: {
-          Authorization: `${process.env.API_KEY}`,
-        },
-      }
-    );
+    const response = await apiFetch(`https://api.pexels.com/v1/search?query=${search}&per_page=60`);
 
     res.render("pages/search", {
       title: "Free Stock Photos Royalty free images shared by creators",
@@ -63,12 +43,13 @@ router.get("/search", async (req, res, next) => {
       result: response.data.photos,
       query: search,
     });
-    console.log(response.data.photos);
   } catch (error) {
     console.error(error);
     next(error);
   }
 });
+
+
 
 // dynamic pages of photos
 
@@ -78,7 +59,6 @@ router.get("/:pages", async function (req, res, next) {
     const response = await apiFetch(`https://api.pexels.com/v1/popular?page=${pages}&per_page=60`);
 
     const { page } = extractQueryParams(response.data.next_page);
-    console.log(page);
     res.render("pages/pages", {
       title: "Free Stock Photos Royalty free images shared by creators",
       img: randomImages(),
