@@ -14,7 +14,7 @@ const {randomImages}=require('../utils/randomResources');
 /* GET home page. */
 router.get("/", async function (req, res, next) {
   try {
-    const response = await apiFetch("https://api.pexels.com/v1/popular?page=1&per_page=60");
+    const response = await apiFetch("https://api.pexels.com/v1/popular?page=1&per_page=15");
 
     const { page } = extractQueryParams(response.data.next_page);
 
@@ -56,7 +56,7 @@ router.get("/search", async (req, res, next) => {
 router.get("/:pages", async function (req, res, next) {
   try {
     const { pages } = req.params;
-    const response = await apiFetch(`https://api.pexels.com/v1/popular?page=${pages}&per_page=60`);
+    const response = await apiFetch(`https://api.pexels.com/v1/popular?page=${pages}&per_page=15`);
 
     const { page } = extractQueryParams(response.data.next_page);
     res.render("pages/pages", {
